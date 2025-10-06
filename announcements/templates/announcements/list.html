@@ -5,8 +5,14 @@
 {% block content %}
 <h1>Welcome to Announcements</h1>
 <ul>
-    {% for item in announcements %}
-    <li><a href="/announcements/{{ item.id }}/">{{ item.title }}</a></li>
+    {% for announcement in announcements %}
+    <li class="announcement">
+        <h2>{{ announcement.title }}</h2>
+        <p class="content-short">{{ announcement.content|truncatechars:100 }}</p>
+        <p class="content-full" style="display:none;">{{ announcement.content }}</p>
+        <button class="read-more-toggle">Read more</button>
+        <a href="{% url 'announcement_detail' announcement.id %}">View Full</a>
+    </li>
     {% endfor %}
 </ul>
 {% endblock %}
